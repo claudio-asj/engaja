@@ -25,7 +25,7 @@ function AuthenticatedLayout({ children }: { children: React.ReactNode }) {
     >
       <div className="flex min-h-screen bg-background text-on-background">
         <Sidebar />
-        <div className="flex min-h-screen flex-1 flex-col min-w-0 md:ml-64">
+        <div className="flex min-h-screen min-w-0 flex-1 flex-col md:ml-[17.5rem]">
           {children}
         </div>
       </div>

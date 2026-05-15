@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { 
   BookOpen, 
   ChevronRight, 
@@ -168,12 +168,21 @@ export function LandingPage() {
             <a href="#" className="hover:opacity-100 transition-opacity">INSTITUCIONAL</a>
           </div>
 
-          <div className="max-w-md space-y-4">
-            <p className="text-xs opacity-50 uppercase tracking-[0.3em] font-black">Plataforma em conformidade com</p>
-            <div className="flex items-center justify-center gap-6 opacity-30">
-               <span className="font-black text-xl italic tracking-tighter">FEDERAL UNIVERSITY</span>
-               <span className="h-6 w-px bg-white"></span>
-               <span className="font-black text-xl tracking-tighter">MINISTRY OF EDUCATION</span>
+          <div className="w-full max-w-5xl space-y-5">
+            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-slate-400">Assinatura institucional</p>
+            <div className="flex flex-col items-center justify-center gap-6 md:flex-row md:gap-10">
+              <InstitutionLogo
+                acronym="UFRJ"
+                name="Universidade Federal do Rio de Janeiro"
+              />
+              <InstitutionLogo
+                acronym="SGAADA"
+                name="Superintendência-Geral de Ações Afirmativas, Diversidade e Acessibilidade"
+              />
+              <InstitutionLogo
+                acronym="DIRAC"
+                name="Diretoria de Acessibilidade"
+              />
             </div>
           </div>
           
@@ -196,6 +205,23 @@ function FeatureCard({ icon: Icon, title, desc, color }: any) {
         Saiba mais
         <ArrowRight className="size-4" />
       </button>
+    </div>
+  );
+}
+
+function InstitutionLogo({
+  acronym,
+  name,
+}: {
+  acronym: string;
+  name: string;
+}) {
+  return (
+    <div className="flex items-center gap-4 text-left">
+      <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-white text-sm font-extrabold tracking-[0.12em] text-slate-900">
+        {acronym}
+      </div>
+      <h4 className="max-w-[220px] text-sm font-semibold leading-6 text-white">{name}</h4>
     </div>
   );
 }

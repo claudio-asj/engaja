@@ -115,10 +115,42 @@ export function Login({ onLogin }: { onLogin: () => void }) {
           </p>
         </div>
 
+        <div className="flex w-full max-w-5xl flex-col items-center justify-center gap-5 md:flex-row md:gap-8">
+          <FooterInstitution
+            acronym="UFRJ"
+            name="Universidade Federal do Rio de Janeiro"
+          />
+          <FooterInstitution
+            acronym="SGAADA"
+            name="Superintendência-Geral de Ações Afirmativas, Diversidade e Acessibilidade"
+          />
+          <FooterInstitution
+            acronym="DIRAC"
+            name="Diretoria de Acessibilidade"
+          />
+        </div>
+
         <p className="text-[9px] font-black text-[#c5c5d3] uppercase tracking-[0.3em]">
           © 2024 MAPA - Ministério da Gestão e Acessibilidade Acadêmica
         </p>
       </footer>
+    </div>
+  );
+}
+
+function FooterInstitution({
+  acronym,
+  name,
+}: {
+  acronym: string;
+  name: string;
+}) {
+  return (
+    <div className="flex items-center gap-4 text-left">
+      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-slate-900 text-[11px] font-extrabold tracking-[0.14em] text-white">
+        {acronym}
+      </div>
+      <p className="max-w-[220px] text-sm font-semibold leading-5 text-slate-900">{name}</p>
     </div>
   );
 }

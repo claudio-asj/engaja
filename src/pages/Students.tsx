@@ -1,211 +1,223 @@
-import React, { useState } from 'react';
-import { Navbar } from '../components/layout/Navbar';
-import { 
-  Users, 
-  UserPlus, 
-  Search, 
-  Filter, 
-  Eye, 
-  History, 
-  Edit2,
-  ChevronLeft,
-  ChevronRight,
-  TrendingUp,
-  CalendarDays,
+import React, { useMemo, useState } from 'react';
+import {
   AlertTriangle,
+  CalendarDays,
+  Eye,
+  Filter,
   GraduationCap,
-  Plus
+  Plus,
+  Search,
+  TrendingUp,
+  UserPlus,
 } from 'lucide-react';
-import { cn } from '@/src/lib/utils';
-import mockData from '../data/mockData.json';
+import { Navbar } from '../components/layout/Navbar';
 import { Modal } from '../components/ui/Modal';
+import mockData from '../data/mockData.json';
+import { cn } from '@/src/lib/utils';
 
 export function Students() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
 
-  const filteredStudents = mockData.students.filter(s => 
-    s.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
-    s.mat.includes(searchTerm)
-  );
+  const filteredStudents = useMemo(() => {
+    const query = searchTerm.toLowerCase();
+
+    return mockData.students.filter((student) => {
+      return (
+        student.name.toLowerCase().includes(query) ||
+        student.mat.includes(searchTerm) ||
+        student.course.toLowerCase().includes(query) ||
+        student.need.toLowerCase().includes(query)
+      );
+    });
+  }, [searchTerm]);
 
   return (
     <>
       <Navbar title="Estudantes Assistidos" />
-      <main className="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8 space-y-6 sm:space-y-8 animate-in fade-in duration-500">
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-          <div>
-            <h1 className="text-3xl font-black text-slate-900 tracking-tight leading-none">Gerenciamento de Alunos</h1>
-            <p className="text-slate-500 mt-2 text-sm">Central de monitoramento e suporte acadêmico inclusivo.</p>
-          </div>
-          <button 
-            onClick={() => setIsModalOpen(true)}
-            className="flex w-full sm:w-auto items-center justify-center gap-2 bg-primary text-white px-6 py-3 rounded-2xl font-bold shadow-lg shadow-primary/20 hover:bg-primary-container active:scale-95 transition-all"
-          >
-            <UserPlus className="size-5" />
-            Cadastrar Novo Aluno
-          </button>
-        </div>
-
-        {/* Filters Bento Box */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-4 sm:gap-6 lg:gap-8">
-          <div className="md:col-span-5 bg-white border-2 border-slate-100 p-5 sm:p-6 lg:p-8 rounded-[2rem] shadow-sm space-y-5 hover:border-primary/10 transition-all group">
-            <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] pl-1">Pesquisa Global</label>
-            <div className="relative group/input">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 size-5 text-slate-300 group-focus-within/input:text-primary transition-all" />
-              <input 
-                type="text" 
-                placeholder="Busca por Nome ou Matrícula..." 
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-12 pr-6 py-4 bg-slate-50 border-2 border-transparent rounded-2xl text-sm focus:border-primary/20 focus:bg-white focus:ring-8 focus:ring-primary/5 outline-none transition-all font-black text-slate-900 placeholder:text-slate-300"
-              />
+      <main className="app-main">
+        <div className="page-stack">
+          <section className="page-header">
+            <div>
+              <h1 className="page-title">Gerenciamento de alunos</h1>
+              <p className="page-subtitle">
+                Visualize estudantes acompanhados, filtre por critérios relevantes e mantenha o histórico institucional mais organizado.
+              </p>
             </div>
-          </div>
-          
-          <div className="md:col-span-12 lg:col-span-7 grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
-            <FilterSelect label="Acessibilidade" options={["Todas as Demandas", "Visual", "Auditiva", "Motora", "TEA"]} />
-            <FilterSelect label="Status" options={["Todos Status", "Ativo", "Formante", "Suspenso"]} />
-            <FilterSelect label="Unidade" options={["Todos Campus", "Rio de Janeiro", "São Paulo", "Brasília"]} />
-          </div>
-        </div>
 
-        {/* Table Container */}
-        <div className="bg-white border-2 border-slate-100 rounded-[2.5rem] shadow-sm overflow-hidden flex flex-col mb-12">
-          <div className="overflow-x-auto">
-            <table className="w-full min-w-[980px] text-left">
-              <thead>
-                <tr className="bg-slate-50/50 border-b border-slate-100">
-                  <th className="px-8 py-6 text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">Identificação Discente</th>
-                  <th className="px-8 py-6 text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">Formação Acadêmica</th>
-                  <th className="px-8 py-6 text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">Tipo Inclusão</th>
-                  <th className="px-8 py-6 text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">Rendimento</th>
-                  <th className="px-8 py-6 text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">Status</th>
-                  <th className="px-8 py-6 text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] text-right">Ações</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-slate-50">
-                {filteredStudents.map((student) => (
-                  <tr key={student.id} className="hover:bg-slate-50/80 transition-colors group">
-                    <td className="px-8 py-6">
-                      <div className="flex items-center gap-4">
-                        <div className="size-12 rounded-2xl overflow-hidden border-4 border-white shadow-xl group-hover:scale-110 transition-all">
-                          <img src={student.avatar} alt="" className="w-full h-full object-cover" />
-                        </div>
-                        <div>
-                          <p className="font-black text-sm text-slate-900 tracking-tight">{student.name}</p>
-                          <p className="text-[10px] text-slate-400 font-bold uppercase tracking-widest mt-1">Mat: {student.mat}</p>
-                        </div>
-                      </div>
-                    </td>
-                    <td className="px-8 py-6">
-                       <p className="text-sm font-black text-slate-700 tracking-tight">{student.course}</p>
-                       <p className="text-[10px] text-slate-400 font-bold uppercase tracking-widest mt-1">{student.campus}</p>
-                    </td>
-                    <td className="px-8 py-6">
-                      <span className="text-[10px] font-black bg-blue-50 text-primary border-2 border-blue-100 px-4 py-2 rounded-xl uppercase tracking-widest shadow-sm">
-                        {student.need}
-                      </span>
-                    </td>
-                    <td className="px-8 py-6 text-sm font-black text-slate-900 tracking-tighter">
-                       {student.cr.toFixed(2)}
-                       <span className="text-[8px] text-slate-400 ml-1">CR</span>
-                    </td>
-                    <td className="px-8 py-6">
-                      <StatusBadge status={student.status} />
-                    </td>
-                    <td className="px-8 py-6 text-right">
-                      <div className="flex justify-end gap-3 opacity-100 md:translate-x-4 md:opacity-0 md:group-hover:opacity-100 md:group-hover:translate-x-0 transition-all duration-300">
-                        <ActionButton icon={Eye} label="Ver Detalhes" />
-                        <ActionButton icon={Edit2} label="Editar Aluno" />
-                      </div>
-                    </td>
+            <button onClick={() => setIsModalOpen(true)} className="primary-button">
+              <UserPlus className="size-4" />
+              Cadastrar novo aluno
+            </button>
+          </section>
+
+          <section className="grid grid-cols-1 gap-4 xl:grid-cols-[minmax(0,1.7fr)_minmax(0,1fr)_minmax(0,1fr)_minmax(0,1fr)]">
+            <div className="section-card p-5 sm:p-6">
+              <label className="section-kicker mb-3 block">Pesquisa global</label>
+              <div className="relative">
+                <Search className="absolute left-4 top-1/2 size-4 -translate-y-1/2 text-slate-400" />
+                <input
+                  type="text"
+                  placeholder="Buscar por nome, matrícula, curso ou necessidade"
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="control-input pl-11"
+                />
+              </div>
+            </div>
+
+            <FilterSelect
+              label="Acessibilidade"
+              options={['Todas as demandas', 'Visual', 'Auditiva', 'Motora', 'TEA']}
+            />
+            <FilterSelect
+              label="Status"
+              options={['Todos os status', 'Atendido', 'Pendente']}
+            />
+            <FilterSelect
+              label="Campus"
+              options={['Todos os campi', 'Campus Central', 'Campus Leste', 'Campus Norte', 'Campus Oeste', 'Campus Sul']}
+            />
+          </section>
+
+          <section className="section-card overflow-hidden">
+            <div className="flex flex-col gap-3 border-b border-slate-200 px-5 py-5 sm:flex-row sm:items-end sm:justify-between sm:px-6">
+              <div>
+                <p className="section-kicker">Base monitorada</p>
+                <h2 className="section-title mt-1">Estudantes em acompanhamento</h2>
+              </div>
+              <p className="text-sm text-slate-500">
+                Exibindo <span className="font-semibold text-slate-900">{filteredStudents.length}</span> de{' '}
+                <span className="font-semibold text-slate-900">{mockData.stats.pcdTotal}</span> registros estimados.
+              </p>
+            </div>
+
+            <div className="overflow-x-auto">
+              <table className="w-full min-w-[840px] text-left">
+                <thead className="bg-slate-50 text-sm text-slate-500">
+                  <tr>
+                    <th className="px-5 py-4 font-semibold sm:px-6">Estudante</th>
+                    <th className="px-5 py-4 font-semibold sm:px-6">Curso e campus</th>
+                    <th className="px-5 py-4 font-semibold sm:px-6">Necessidade</th>
+                    <th className="px-5 py-4 font-semibold sm:px-6">CR</th>
+                    <th className="px-5 py-4 font-semibold sm:px-6">Status</th>
+                    <th className="px-5 py-4 text-right font-semibold sm:px-6">Ações</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-          
-          <div className="px-5 sm:px-6 lg:px-8 py-5 sm:py-6 flex flex-col sm:flex-row items-center justify-between bg-slate-50/50 gap-4 sm:gap-6 border-t border-slate-100">
-            <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">
-               Exibindo <span className="text-slate-900">{filteredStudents.length}</span> de <span className="text-slate-900">{mockData.stats.pcdTotal}</span> estudantes
-            </span>
-            <div className="flex items-center gap-2">
-                <PaginationButton icon={ChevronLeft} disabled />
-                {[1, 2, 3].map(i => (
-                  <button key={i} className={cn(
-                    "size-10 rounded-xl text-[10px] font-black transition-all",
-                    i === 1 ? "bg-primary text-white shadow-xl shadow-primary/20" : "bg-white border-2 border-slate-100 text-slate-500 hover:border-primary/20"
-                  )}>{i}</button>
-                ))}
-                <PaginationButton icon={ChevronRight} />
+                </thead>
+                <tbody className="divide-y divide-slate-100 bg-white">
+                  {filteredStudents.map((student) => (
+                    <tr key={student.id} className="align-top transition-colors hover:bg-slate-50/80">
+                      <td className="px-5 py-4 sm:px-6">
+                        <div className="flex items-center gap-4">
+                          <img
+                            src={student.avatar}
+                            alt={student.name}
+                            className="h-12 w-12 rounded-2xl border border-slate-200 object-cover"
+                          />
+                          <div className="min-w-0">
+                            <p className="text-sm font-semibold text-slate-900">{student.name}</p>
+                            <p className="mt-1 text-xs text-slate-500">{student.mat}</p>
+                          </div>
+                        </div>
+                      </td>
+                      <td className="px-5 py-4 sm:px-6">
+                        <p className="text-sm font-medium text-slate-900">{student.course}</p>
+                        <p className="mt-1 text-xs text-slate-500">{student.campus}</p>
+                      </td>
+                      <td className="px-5 py-4 sm:px-6">
+                        <NeedBadge need={student.need} />
+                      </td>
+                      <td className="px-5 py-4 sm:px-6">
+                        <span className="text-sm font-semibold text-slate-900">{student.cr.toFixed(2)}</span>
+                      </td>
+                      <td className="px-5 py-4 sm:px-6">
+                        <StatusBadge status={student.status} />
+                      </td>
+                      <td className="px-5 py-4 sm:px-6">
+                        <div className="flex justify-end gap-2">
+                          <ActionButton icon={Eye} label="Ver detalhes" />
+                          <ActionButton icon={Filter} label="Editar filtros do aluno" />
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
-          </div>
-        </div>
+          </section>
 
-        {/* Footer Stats Summary */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 mb-12">
-          <FooterStat color="bg-slate-950" icon={TrendingUp} value={mockData.stats.activeStudents} label="Inscritos Ativos" trend="+12%" />
-          <FooterStat color="bg-white" icon={CalendarDays} value="24" label="Entrevistas efetuadas" darkText />
-          <FooterStat color="bg-white" icon={AlertTriangle} value="15" label="Plano de Metas" darkText iconColor="text-red-500" />
-          <FooterStat color="bg-white" icon={GraduationCap} value="312" label="Graduados PCDs" darkText />
+          <section className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4">
+            <FooterStat
+              icon={TrendingUp}
+              label="Inscritos ativos"
+              value={mockData.stats.activeStudents.toLocaleString()}
+              helper="Crescimento de 12% no semestre"
+              tone="dark"
+            />
+            <FooterStat
+              icon={CalendarDays}
+              label="Entrevistas concluídas"
+              value="24"
+              helper="Cadência semanal estabilizada"
+            />
+            <FooterStat
+              icon={AlertTriangle}
+              label="Planos prioritários"
+              value="15"
+              helper="Demandam retorno em até 7 dias"
+            />
+            <FooterStat
+              icon={GraduationCap}
+              label="Egressos acompanhados"
+              value="312"
+              helper="Histórico acumulado do programa"
+            />
+          </section>
         </div>
       </main>
 
-      <Modal 
-        isOpen={isModalOpen} 
-        onClose={() => setIsModalOpen(false)} 
-        title="Cadastrar Novo Aluno Assistido"
-      >
-        <form className="space-y-6" onSubmit={(e) => { e.preventDefault(); setIsModalOpen(false); }}>
-          <div className="grid grid-cols-1 gap-6">
-            <div className="space-y-2">
-              <label className="text-xs font-black text-slate-400 uppercase tracking-widest pl-1">Nome Completo</label>
-              <input type="text" className="w-full p-3.5 bg-slate-50 border-2 border-transparent focus:bg-white focus:border-primary/20 rounded-2xl text-sm outline-none transition-all font-semibold" placeholder="Ex: João da Silva" />
-            </div>
+      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} title="Cadastrar novo aluno">
+        <form className="space-y-5" onSubmit={(e) => { e.preventDefault(); setIsModalOpen(false); }}>
+          <div className="space-y-2">
+            <label className="section-kicker">Nome completo</label>
+            <input type="text" className="control-input" placeholder="Ex: João da Silva" />
+          </div>
 
-            <div className="grid grid-cols-2 gap-4">
-              <div className="space-y-2">
-                <label className="text-xs font-black text-slate-400 uppercase tracking-widest pl-1">Matrícula</label>
-                <input type="text" className="w-full p-3.5 bg-slate-50 border-2 border-transparent focus:bg-white focus:border-primary/20 rounded-2xl text-sm outline-none transition-all font-semibold" placeholder="2024.1.XXXX" />
-              </div>
-              <div className="space-y-2">
-                <label className="text-xs font-black text-slate-400 uppercase tracking-widest pl-1">Curso</label>
-                <select className="w-full p-3.5 bg-slate-50 border-2 border-transparent focus:bg-white focus:border-primary/20 rounded-2xl text-sm outline-none transition-all font-semibold appearance-none">
-                  <option>Psicologia</option>
-                  <option>Ciência da Computação</option>
-                  <option>Engenharia Civil</option>
-                  <option>Direito</option>
-                </select>
-              </div>
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <div className="space-y-2">
+              <label className="section-kicker">Matrícula</label>
+              <input type="text" className="control-input" placeholder="2024.1.XXXX" />
             </div>
 
             <div className="space-y-2">
-              <label className="text-xs font-black text-slate-400 uppercase tracking-widest pl-1">Necessidade Acadêmica Principal</label>
-              <select className="w-full p-3.5 bg-slate-50 border-2 border-transparent focus:bg-white focus:border-primary/20 rounded-2xl text-sm outline-none transition-all font-semibold appearance-none">
-                <option>Deficiência Visual (Baixa Visão/Cegueira)</option>
-                <option>Deficiência Auditiva (Libras)</option>
-                <option>Autismo (TEA)</option>
-                <option>Mobilidade Reduzida</option>
-                <option>Outros</option>
+              <label className="section-kicker">Curso</label>
+              <select className="control-input">
+                <option>Psicologia</option>
+                <option>Ciência da Computação</option>
+                <option>Engenharia Civil</option>
+                <option>Direito</option>
               </select>
             </div>
           </div>
 
-          <div className="flex gap-4 pt-4">
-            <button 
-              type="button"
-              onClick={() => setIsModalOpen(false)}
-              className="flex-1 px-6 py-4 border-2 border-slate-100 text-slate-500 rounded-2xl font-bold hover:bg-slate-50 transition-all"
-            >
+          <div className="space-y-2">
+            <label className="section-kicker">Necessidade acadêmica principal</label>
+            <select className="control-input">
+              <option>Deficiência Visual (Baixa Visão/Cegueira)</option>
+              <option>Deficiência Auditiva (Libras)</option>
+              <option>Autismo (TEA)</option>
+              <option>Mobilidade Reduzida</option>
+              <option>Outros</option>
+            </select>
+          </div>
+
+          <div className="flex gap-3 pt-2">
+            <button type="button" onClick={() => setIsModalOpen(false)} className="ghost-button flex-1">
               Cancelar
             </button>
-            <button 
-              type="submit"
-              className="flex-1 px-6 py-4 bg-primary text-white rounded-2xl font-bold hover:bg-primary-container shadow-xl shadow-primary/20 transition-all flex items-center justify-center gap-2"
-            >
-              Criar Cadastro
-              <Plus className="size-5" />
+            <button type="submit" className="primary-button flex-1">
+              Criar cadastro
+              <Plus className="size-4" />
             </button>
           </div>
         </form>
@@ -214,67 +226,86 @@ export function Students() {
   );
 }
 
-function FilterSelect({ label, options }: { label: string, options: string[] }) {
+function FilterSelect({ label, options }: { label: string; options: string[] }) {
   return (
-    <div className="bg-white border-2 border-slate-100 p-5 sm:p-6 lg:p-8 rounded-[2rem] shadow-sm space-y-4 hover:border-primary/10 transition-all flex flex-col justify-center">
-      <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] pl-1 leading-none">{label}</label>
-      <select className="w-full bg-slate-50 border-2 border-transparent focus:bg-white focus:border-primary/20 rounded-2xl py-4 px-5 text-sm outline-none cursor-pointer font-black transition-all appearance-none text-slate-900 mt-2">
-        {options.map(opt => <option key={opt}>{opt}</option>)}
+    <div className="section-card p-5 sm:p-6">
+      <label className="section-kicker mb-3 block">{label}</label>
+      <select className="control-input">
+        {options.map((option) => (
+          <option key={option}>{option}</option>
+        ))}
       </select>
     </div>
   );
 }
 
-function StatusBadge({ status }: { status: string }) {
-  const isAtendido = status === 'ATENDIDO' || status === 'Ativo';
-  
+function NeedBadge({ need }: { need: string }) {
   return (
-    <span className={cn(
-      "inline-flex items-center gap-2 text-[9px] font-black px-4 py-2 rounded-xl uppercase tracking-[0.2em] border-2",
-      isAtendido ? "bg-emerald-50 text-emerald-600 border-emerald-100" : "bg-amber-50 text-amber-600 border-amber-100"
-    )}>
-      <span className={cn("size-2 rounded-full", isAtendido ? "bg-emerald-500" : "bg-amber-500 shadow-sm")}></span>
+    <span className="inline-flex max-w-full rounded-full bg-blue-50 px-3 py-1.5 text-xs font-medium text-primary">
+      {need}
+    </span>
+  );
+}
+
+function StatusBadge({ status }: { status: string }) {
+  const isAttended = status === 'ATENDIDO' || status === 'Ativo';
+
+  return (
+    <span
+      className={cn(
+        'inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-xs font-semibold',
+        isAttended ? 'bg-emerald-50 text-emerald-700' : 'bg-amber-50 text-amber-700',
+      )}
+    >
+      <span className={cn('h-2 w-2 rounded-full', isAttended ? 'bg-emerald-500' : 'bg-amber-500')} />
       {status}
     </span>
   );
 }
 
-function ActionButton({ icon: Icon, label }: { icon: any, label: string }) {
+function ActionButton({ icon: Icon, label }: { icon: any; label: string }) {
   return (
-    <button className="size-11 bg-slate-50 text-slate-400 rounded-2xl flex items-center justify-center hover:bg-primary hover:text-white transition-all transform hover:rotate-6 shadow-sm" aria-label={label}>
-      <Icon className="size-5" />
-    </button>
-  );
-}
-
-function PaginationButton({ icon: Icon, disabled = false }: any) {
-  return (
-    <button 
-      disabled={disabled}
-      className={cn(
-        "size-10 flex items-center justify-center rounded-xl border-2 border-slate-100 transition-all",
-        disabled ? "opacity-30 cursor-not-allowed" : "bg-white text-slate-400 hover:border-primary/20 hover:text-primary shadow-sm"
-      )}
+    <button
+      className="flex h-10 w-10 items-center justify-center rounded-2xl border border-slate-200 bg-white text-slate-500 transition hover:border-primary/20 hover:text-primary"
+      aria-label={label}
     >
       <Icon className="size-4" />
     </button>
   );
 }
 
-function FooterStat({ color, icon: Icon, value, label, trend, darkText = false, iconColor }: any) {
+function FooterStat({
+  icon: Icon,
+  label,
+  value,
+  helper,
+  tone,
+}: {
+  icon: any;
+  label: string;
+  value: string | number;
+  helper: string;
+  tone?: 'dark';
+}) {
   return (
-    <div className={cn("p-5 sm:p-6 lg:p-8 rounded-[2.5rem] shadow-sm border-2 border-slate-100 flex flex-col justify-between min-h-40 sm:h-44 group hover:shadow-2xl transition-all relative overflow-hidden", color)}>
-      <div className="flex justify-between items-start relative z-10">
-        <div className={cn("size-12 rounded-2xl flex items-center justify-center shadow-sm", darkText ? "bg-slate-50 border border-slate-100" : "bg-white/10 backdrop-blur-md")}>
-           <Icon className={cn("size-6", iconColor || (darkText ? "text-primary" : "text-white"))} />
+    <div className={cn('section-card p-5 sm:p-6', tone === 'dark' && 'border-slate-950 bg-slate-950 text-white')}>
+      <div className="flex items-start justify-between gap-4">
+        <div>
+          <p className={cn('section-kicker', tone === 'dark' && 'text-slate-400')}>{label}</p>
+          <p className={cn('mt-3 text-3xl font-extrabold tracking-tight', tone === 'dark' ? 'text-white' : 'text-slate-950')}>
+            {value}
+          </p>
+          <p className={cn('mt-2 text-sm leading-6', tone === 'dark' ? 'text-slate-300' : 'text-slate-500')}>{helper}</p>
         </div>
-        {trend && <span className="text-[10px] font-black bg-white text-primary px-4 py-2 rounded-xl shadow-lg shadow-black/5">{trend}</span>}
+        <div
+          className={cn(
+            'flex h-11 w-11 items-center justify-center rounded-2xl',
+            tone === 'dark' ? 'bg-white/10 text-white' : 'bg-slate-100 text-slate-700',
+          )}
+        >
+          <Icon className="size-5" />
+        </div>
       </div>
-      <div className="space-y-1 relative z-10">
-        <div className={cn("text-4xl font-black tracking-tighter leading-none", darkText ? "text-slate-900" : "text-white")}>{value}</div>
-        <div className={cn("text-[10px] font-black uppercase tracking-[0.2em] mt-2", darkText ? "text-slate-400" : "text-white/40")}>{label}</div>
-      </div>
-      <div className={cn("absolute -bottom-6 -right-6 size-32 rounded-full transition-transform duration-700 group-hover:scale-150 opacity-10", darkText ? "bg-slate-100" : "bg-white/10")} />
     </div>
   );
 }

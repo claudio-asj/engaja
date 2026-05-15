@@ -1,8 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Public+Sans:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Public+Sans:wght@400;500;600;700;800&display=swap');
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Inter", "Public Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Public Sans", "Manrope", ui-sans-serif, system-ui, sans-serif;
   
   /* Palette from Professional Polish theme */
   --color-primary: #2563eb; 
@@ -22,8 +22,76 @@
 }
 
 @layer base {
+  html {
+    font-size: 15px;
+    -webkit-text-size-adjust: 100%;
+  }
+
   body {
-    @apply font-sans text-on-background bg-background antialiased;
+    @apply font-sans text-on-background antialiased;
+    background:
+      radial-gradient(circle at top left, rgba(37, 99, 235, 0.08), transparent 28%),
+      linear-gradient(180deg, #f8fbff 0%, #f1f5f9 52%, #edf2f7 100%);
+    min-height: 100vh;
+    line-height: 1.5;
+  }
+
+  #root {
+    min-height: 100vh;
+  }
+
+  * {
+    text-wrap: pretty;
+  }
+}
+
+@layer components {
+  .app-main {
+    @apply flex-1 overflow-y-auto px-4 py-5 sm:px-6 sm:py-6 xl:px-8;
+  }
+
+  .page-stack {
+    @apply mx-auto flex w-full max-w-[1440px] flex-col gap-6 xl:gap-8;
+  }
+
+  .page-header {
+    @apply flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between;
+  }
+
+  .page-title {
+    @apply text-2xl font-extrabold tracking-tight text-slate-950 sm:text-[2rem];
+  }
+
+  .page-subtitle {
+    @apply mt-2 max-w-3xl text-sm leading-6 text-slate-600;
+  }
+
+  .section-card {
+    @apply rounded-3xl border border-slate-200/80 bg-white shadow-[0_18px_40px_-28px_rgba(15,23,42,0.28)];
+  }
+
+  .section-card-muted {
+    @apply rounded-3xl border border-slate-200/80 bg-slate-50/70 shadow-[0_18px_40px_-28px_rgba(15,23,42,0.2)];
+  }
+
+  .section-title {
+    @apply text-lg font-extrabold tracking-tight text-slate-900 sm:text-xl;
+  }
+
+  .section-kicker {
+    @apply text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500;
+  }
+
+  .control-input {
+    @apply w-full rounded-2xl border border-slate-200 bg-white px-4 py-3.5 text-sm text-slate-700 outline-none transition focus:border-primary/30 focus:ring-4 focus:ring-primary/10;
+  }
+
+  .ghost-button {
+    @apply inline-flex items-center justify-center gap-2 rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-slate-700 transition hover:border-primary/20 hover:bg-slate-50;
+  }
+
+  .primary-button {
+    @apply inline-flex items-center justify-center gap-2 rounded-2xl bg-primary px-5 py-3 text-sm font-semibold text-white shadow-[0_14px_30px_-18px_rgba(37,99,235,0.7)] transition hover:bg-primary-container active:scale-[0.99];
   }
 }
 
