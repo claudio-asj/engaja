@@ -1,0 +1,84 @@
+{
+  "students": [
+    {
+      "id": "1",
+      "name": "João Silva Mendes",
+      "mat": "2024.1.0082",
+      "course": "Ciência da Computação",
+      "campus": "Campus Leste",
+      "need": "Deficiência Visual",
+      "cr": 8.5,
+      "status": "ATENDIDO",
+      "email": "joao.mendes@u.edu.br",
+      "avatar": "https://randomuser.me/api/portraits/men/1.jpg"
+    },
+    {
+      "id": "2",
+      "name": "Ana Maria Oliveira",
+      "mat": "2023.2.0145",
+      "course": "Engenharia de Produção",
+      "campus": "Campus Central",
+      "need": "Espectro Autista (TEA)",
+      "cr": 9.15,
+      "status": "ATENDIDO",
+      "email": "ana.oliveira@u.edu.br",
+      "avatar": "https://randomuser.me/api/portraits/women/2.jpg"
+    },
+    {
+      "id": "3",
+      "name": "Paulo Ricardo Santos",
+      "mat": "2024.1.0093",
+      "course": "Letras - Português",
+      "campus": "Campus Sul",
+      "need": "Baixa Visão",
+      "cr": 7.2,
+      "status": "PENDENTE",
+      "email": "paulo.santos@u.edu.br",
+      "avatar": "https://randomuser.me/api/portraits/men/3.jpg"
+    },
+    {
+      "id": "4",
+      "name": "Beatriz Lima",
+      "mat": "2022.2.0221",
+      "course": "Ciências Biológicas",
+      "campus": "Campus Leste",
+      "need": "Deficiência Auditiva",
+      "cr": 8.85,
+      "status": "ATENDIDO",
+      "email": "beatriz.lima@u.edu.br",
+      "avatar": "https://randomuser.me/api/portraits/women/4.jpg"
+    }
+  ],
+  "policies": [
+    {
+      "id": "p1",
+      "title": "Isenção de Material",
+      "desc": "Fornecimento gratuito de materiais didáticos adaptados, braile ou formatos digitais acessíveis.",
+      "category": "Acadêmica",
+      "beneficiaries": 142,
+      "status": "Ativa"
+    },
+    {
+      "id": "p2",
+      "title": "Intérprete de Libras",
+      "desc": "Acompanhamento de profissionais de Língua Brasileira de Sinais em atividades acadêmicas.",
+      "category": "Acadêmica",
+      "beneficiaries": 87,
+      "status": "Ativa"
+    },
+    {
+      "id": "p3",
+      "title": "Tempo Adicional",
+      "desc": "Extensão do tempo regulamentar para exames conforme laudo de necessidade específica.",
+      "category": "Acadêmica",
+      "beneficiaries": 215,
+      "status": "Revisão"
+    }
+  ],
+  "stats": {
+    "activeStudents": 1240,
+    "pcdTotal": 82,
+    "techAssistive": 45,
+    "avgCr": 8.42
+  }
+}

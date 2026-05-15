@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Public+Sans:wght@300;400;500;600;700;800;900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", "Public Sans", ui-sans-serif, system-ui, sans-serif;
+  
+  /* Palette from Professional Polish theme */
+  --color-primary: #2563eb; 
+  --color-primary-container: #1d4ed8;
+  --color-on-primary: #ffffff;
+  
+  --color-sidebar: #0f172a; 
+  --color-sidebar-hover: #1e293b; 
+  --color-sidebar-text: #94a3b8; 
+  
+  --color-background: #f1f5f9; 
+  --color-surface: #ffffff;
+  --color-on-background: #0f172a;
+  
+  --color-outline: #e2e8f0; 
+  --color-outline-variant: #cbd5e1; 
+}
+
+@layer base {
+  body {
+    @apply font-sans text-on-background bg-background antialiased;
+  }
+}
+
+/* Custom scrollbar hide utility */
+@layer utilities {
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}

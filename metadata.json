@@ -1,0 +1,8 @@
+{
+  "name": "MAPA - Gestão de Acessibilidade",
+  "description": "Sistema institucional de gestão e monitoramento de políticas de acessibilidade e inclusão universitária.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
