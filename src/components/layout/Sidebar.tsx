@@ -28,7 +28,7 @@ export function Sidebar() {
           M
         </div>
         <div className="flex flex-col">
-          <span className="text-white font-bold leading-tight tracking-tight">MAPA v2</span>
+          <span className="text-white font-bold leading-tight tracking-tight">MAPA</span>
           <span className="text-[10px] uppercase tracking-widest opacity-60">Portal Inclusão</span>
         </div>
       </div>

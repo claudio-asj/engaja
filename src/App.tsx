@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { HashRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { LandingPage } from './pages/LandingPage';
 import { Sidebar } from './components/layout/Sidebar';
 import { Dashboard } from './pages/Dashboard';
@@ -8,7 +8,6 @@ import { Policies } from './pages/Policies';
 import { Reports } from './pages/Reports';
 import { Settings } from './pages/Settings';
 import { Login } from './pages/Login';
-import { useNavigate } from 'react-router-dom';
 
 // Layout wrapper for authenticated routes
 function AuthenticatedLayout({ children }: { children: React.ReactNode }) {
@@ -27,7 +26,7 @@ export default function App() {
   const [isAuthenticated, setIsAuthenticated] = React.useState(false);
 
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={
@@ -73,6 +72,6 @@ export default function App() {
         
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
