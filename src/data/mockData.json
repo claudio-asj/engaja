@@ -47,13 +47,181 @@
       "status": "ATENDIDO",
       "email": "beatriz.lima@u.edu.br",
       "avatar": "https://randomuser.me/api/portraits/women/4.jpg"
+    },
+    {
+      "id": "5",
+      "name": "Carlos Eduardo Freitas",
+      "mat": "2021.1.0310",
+      "course": "Direito",
+      "campus": "Campus Central",
+      "need": "Mobilidade Reduzida",
+      "cr": 7.94,
+      "status": "ATENDIDO",
+      "email": "carlos.freitas@u.edu.br",
+      "avatar": "https://randomuser.me/api/portraits/men/5.jpg"
+    },
+    {
+      "id": "6",
+      "name": "Larissa Gomes Rocha",
+      "mat": "2024.2.0048",
+      "course": "Psicologia",
+      "campus": "Campus Norte",
+      "need": "TDAH",
+      "cr": 8.12,
+      "status": "PENDENTE",
+      "email": "larissa.rocha@u.edu.br",
+      "avatar": "https://randomuser.me/api/portraits/women/6.jpg"
+    },
+    {
+      "id": "7",
+      "name": "Matheus Fernandes Costa",
+      "mat": "2023.1.0179",
+      "course": "Administração",
+      "campus": "Campus Central",
+      "need": "Deficiência Física",
+      "cr": 7.68,
+      "status": "ATENDIDO",
+      "email": "matheus.costa@u.edu.br",
+      "avatar": "https://randomuser.me/api/portraits/men/7.jpg"
+    },
+    {
+      "id": "8",
+      "name": "Juliana Pereira Alves",
+      "mat": "2022.1.0264",
+      "course": "Serviço Social",
+      "campus": "Campus Oeste",
+      "need": "Espectro Autista (TEA)",
+      "cr": 8.73,
+      "status": "ATENDIDO",
+      "email": "juliana.alves@u.edu.br",
+      "avatar": "https://randomuser.me/api/portraits/women/8.jpg"
+    },
+    {
+      "id": "9",
+      "name": "Rafael Nogueira Dias",
+      "mat": "2020.2.0136",
+      "course": "Engenharia Civil",
+      "campus": "Campus Norte",
+      "need": "Deficiência Auditiva",
+      "cr": 6.98,
+      "status": "PENDENTE",
+      "email": "rafael.dias@u.edu.br",
+      "avatar": "https://randomuser.me/api/portraits/men/9.jpg"
+    },
+    {
+      "id": "10",
+      "name": "Camila Siqueira Barros",
+      "mat": "2024.1.0198",
+      "course": "Design",
+      "campus": "Campus Sul",
+      "need": "Dislexia",
+      "cr": 8.41,
+      "status": "ATENDIDO",
+      "email": "camila.barros@u.edu.br",
+      "avatar": "https://randomuser.me/api/portraits/women/10.jpg"
+    },
+    {
+      "id": "11",
+      "name": "Felipe Andrade Moura",
+      "mat": "2023.2.0087",
+      "course": "Sistemas de Informação",
+      "campus": "Campus Leste",
+      "need": "Baixa Visão",
+      "cr": 8.94,
+      "status": "ATENDIDO",
+      "email": "felipe.moura@u.edu.br",
+      "avatar": "https://randomuser.me/api/portraits/men/11.jpg"
+    },
+    {
+      "id": "12",
+      "name": "Mariana Torres Ribeiro",
+      "mat": "2021.2.0425",
+      "course": "Nutrição",
+      "campus": "Campus Oeste",
+      "need": "Deficiência Visual",
+      "cr": 7.51,
+      "status": "PENDENTE",
+      "email": "mariana.ribeiro@u.edu.br",
+      "avatar": "https://randomuser.me/api/portraits/women/12.jpg"
+    },
+    {
+      "id": "13",
+      "name": "Gabriel Azevedo Martins",
+      "mat": "2022.2.0309",
+      "course": "História",
+      "campus": "Campus Central",
+      "need": "Deficiência Intelectual",
+      "cr": 7.37,
+      "status": "ATENDIDO",
+      "email": "gabriel.martins@u.edu.br",
+      "avatar": "https://randomuser.me/api/portraits/men/13.jpg"
+    },
+    {
+      "id": "14",
+      "name": "Isabela Monteiro Cunha",
+      "mat": "2024.2.0122",
+      "course": "Arquitetura e Urbanismo",
+      "campus": "Campus Norte",
+      "need": "Mobilidade Reduzida",
+      "cr": 8.66,
+      "status": "ATENDIDO",
+      "email": "isabela.cunha@u.edu.br",
+      "avatar": "https://randomuser.me/api/portraits/women/14.jpg"
+    },
+    {
+      "id": "15",
+      "name": "Thiago Viana Lopes",
+      "mat": "2020.1.0104",
+      "course": "Matemática",
+      "campus": "Campus Sul",
+      "need": "Surdez Bilateral",
+      "cr": 8.08,
+      "status": "ATENDIDO",
+      "email": "thiago.lopes@u.edu.br",
+      "avatar": "https://randomuser.me/api/portraits/men/15.jpg"
+    },
+    {
+      "id": "16",
+      "name": "Patrícia Helena Souza",
+      "mat": "2023.1.0297",
+      "course": "Pedagogia",
+      "campus": "Campus Oeste",
+      "need": "TDAH",
+      "cr": 8.27,
+      "status": "PENDENTE",
+      "email": "patricia.souza@u.edu.br",
+      "avatar": "https://randomuser.me/api/portraits/women/16.jpg"
+    },
+    {
+      "id": "17",
+      "name": "Bruno Henrique Rezende",
+      "mat": "2021.2.0181",
+      "course": "Engenharia Elétrica",
+      "campus": "Campus Leste",
+      "need": "Deficiência Física",
+      "cr": 7.89,
+      "status": "ATENDIDO",
+      "email": "bruno.rezende@u.edu.br",
+      "avatar": "https://randomuser.me/api/portraits/men/17.jpg"
+    },
+    {
+      "id": "18",
+      "name": "Renata Carvalho Pinto",
+      "mat": "2022.1.0376",
+      "course": "Enfermagem",
+      "campus": "Campus Central",
+      "need": "Deficiência Auditiva",
+      "cr": 8.58,
+      "status": "ATENDIDO",
+      "email": "renata.pinto@u.edu.br",
+      "avatar": "https://randomuser.me/api/portraits/women/18.jpg"
     }
   ],
   "policies": [
     {
       "id": "p1",
       "title": "Isenção de Material",
-      "desc": "Fornecimento gratuito de materiais didáticos adaptados, braile ou formatos digitais acessíveis.",
+      "desc": "Fornecimento gratuito de materiais didáticos adaptados, braile ou formatos digitais acessíveis para disciplinas obrigatórias e optativas.",
       "category": "Acadêmica",
       "beneficiaries": 142,
       "status": "Ativa"
@@ -61,7 +229,7 @@
     {
       "id": "p2",
       "title": "Intérprete de Libras",
-      "desc": "Acompanhamento de profissionais de Língua Brasileira de Sinais em atividades acadêmicas.",
+      "desc": "Acompanhamento de profissionais de Libras em aulas, monitorias, bancas e eventos institucionais previamente agendados.",
       "category": "Acadêmica",
       "beneficiaries": 87,
       "status": "Ativa"
@@ -69,16 +237,56 @@
     {
       "id": "p3",
       "title": "Tempo Adicional",
-      "desc": "Extensão do tempo regulamentar para exames conforme laudo de necessidade específica.",
+      "desc": "Ampliação do tempo de prova e flexibilização de avaliações presenciais conforme laudo e plano de acompanhamento pedagógico.",
       "category": "Acadêmica",
       "beneficiaries": 215,
       "status": "Revisão"
+    },
+    {
+      "id": "p4",
+      "title": "Notebooks Emprestados",
+      "desc": "Empréstimo semestral de notebooks com leitores de tela, ampliadores e softwares acadêmicos para estudantes em vulnerabilidade digital.",
+      "category": "Tecnologia Assistiva",
+      "beneficiaries": 64,
+      "status": "Ativa"
+    },
+    {
+      "id": "p5",
+      "title": "Adequação de Mobiliário",
+      "desc": "Disponibilização de carteiras adaptadas, mesas com regulagem de altura e cadeiras ergonômicas em salas prioritárias.",
+      "category": "Infraestrutura",
+      "beneficiaries": 53,
+      "status": "Ativa"
+    },
+    {
+      "id": "p6",
+      "title": "Auxílio Transporte Acessível",
+      "desc": "Subsídio parcial para deslocamento de estudantes com mobilidade reduzida em trajetos entre residência, campus e campo de estágio.",
+      "category": "Financeira",
+      "beneficiaries": 39,
+      "status": "Ativa"
+    },
+    {
+      "id": "p7",
+      "title": "Digitalização de Acervo",
+      "desc": "Conversão prioritária de textos obrigatórios para PDF acessível, EPUB e versões compatíveis com leitores de tela.",
+      "category": "Tecnologia Assistiva",
+      "beneficiaries": 118,
+      "status": "Revisão"
+    },
+    {
+      "id": "p8",
+      "title": "Tutoria de Transição Acadêmica",
+      "desc": "Acompanhamento intensivo para estudantes ingressantes nas primeiras doze semanas letivas, com foco em permanência e autonomia.",
+      "category": "Acadêmica",
+      "beneficiaries": 71,
+      "status": "Ativa"
     }
   ],
   "stats": {
     "activeStudents": 1240,
-    "pcdTotal": 82,
-    "techAssistive": 45,
-    "avgCr": 8.42
+    "pcdTotal": 186,
+    "techAssistive": 58,
+    "avgCr": 8.16
   }
 }

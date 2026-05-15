@@ -8,16 +8,28 @@ import { Policies } from './pages/Policies';
 import { Reports } from './pages/Reports';
 import { Settings } from './pages/Settings';
 import { Login } from './pages/Login';
+import { LayoutProvider } from './components/layout/LayoutContext';
 
 // Layout wrapper for authenticated routes
 function AuthenticatedLayout({ children }: { children: React.ReactNode }) {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
+
   return (
-    <div className="flex min-h-screen bg-background text-on-background">
-      <Sidebar />
-      <div className="flex-1 md:ml-64 flex flex-col min-w-0">
-        {children}
+    <LayoutProvider
+      value={{
+        isMobileMenuOpen,
+        openMobileMenu: () => setIsMobileMenuOpen(true),
+        closeMobileMenu: () => setIsMobileMenuOpen(false),
+        toggleMobileMenu: () => setIsMobileMenuOpen((current) => !current),
+      }}
+    >
+      <div className="flex min-h-screen bg-background text-on-background">
+        <Sidebar />
+        <div className="flex min-h-screen flex-1 flex-col min-w-0 md:ml-64">
+          {children}
+        </div>
       </div>
-    </div>
+    </LayoutProvider>
   );
 }
 

@@ -49,19 +49,19 @@ export function Reports() {
   return (
     <>
       <Navbar title="Relatórios de Impacto" />
-      <main className="p-8 space-y-8 animate-in fade-in duration-500 overflow-y-auto flex-1">
+      <main className="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8 space-y-6 sm:space-y-8 animate-in fade-in duration-500">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
           <div>
             <h1 className="text-3xl font-black text-slate-900 tracking-tight leading-none">Inteligência Estratégica</h1>
             <p className="text-slate-500 mt-2 text-sm">Análise de métricas de acessibilidade e impacto institucional.</p>
           </div>
-          <div className="flex items-center gap-3 bg-white p-2 rounded-2xl border border-slate-200 shadow-sm">
-            <select className="bg-transparent border-none font-bold text-xs text-slate-600 focus:ring-0 cursor-pointer appearance-none px-4">
+          <div className="flex w-full md:w-auto flex-col sm:flex-row items-stretch sm:items-center gap-3 bg-white p-2 rounded-2xl border border-slate-200 shadow-sm">
+            <select className="bg-transparent border-none font-bold text-xs text-slate-600 focus:ring-0 cursor-pointer appearance-none px-4 py-2">
               <option>Semestre Atual (2024.1)</option>
               <option>Ano de 2023</option>
               <option>Histórico Geral</option>
             </select>
-            <button className="flex items-center gap-2 bg-primary text-white px-5 py-2.5 rounded-xl font-bold text-[10px] uppercase tracking-widest shadow-lg shadow-primary/20 hover:bg-primary-container active:scale-95 transition-all">
+            <button className="flex items-center justify-center gap-2 bg-primary text-white px-5 py-3 rounded-xl font-bold text-[10px] uppercase tracking-widest shadow-lg shadow-primary/20 hover:bg-primary-container active:scale-95 transition-all">
               <Download className="size-4" />
               Exportar Dashboard
             </button>
@@ -69,7 +69,7 @@ export function Reports() {
         </div>
 
         {/* Executive Summary */}
-        <div className="bg-white p-8 rounded-[2rem] border border-slate-200 shadow-sm flex flex-col md:flex-row items-start gap-8 relative overflow-hidden group">
+        <div className="bg-white p-5 sm:p-6 lg:p-8 rounded-[2rem] border border-slate-200 shadow-sm flex flex-col md:flex-row items-start gap-6 sm:gap-8 relative overflow-hidden group">
           <div className="size-16 rounded-2xl bg-blue-50 flex items-center justify-center text-primary shrink-0 border-2 border-blue-100 shadow-sm z-10 transition-transform group-hover:rotate-6">
             <Sparkles className="size-8 fill-current" />
           </div>
@@ -85,9 +85,9 @@ export function Reports() {
         </div>
 
         {/* Charts Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-          <div className="lg:col-span-8 bg-white p-8 rounded-[2rem] border border-slate-200 shadow-sm flex flex-col h-[450px]">
-            <div className="flex justify-between items-center mb-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6 lg:gap-8">
+          <div className="lg:col-span-8 bg-white p-5 sm:p-6 lg:p-8 rounded-[2rem] border border-slate-200 shadow-sm flex flex-col h-[360px] sm:h-[420px] lg:h-[450px]">
+            <div className="flex justify-between items-center mb-6 sm:mb-8">
               <div>
                 <h3 className="font-black text-lg text-slate-900 tracking-tight">Distribuição de Necessidades</h3>
                 <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-1">Volume de Estudantes por Categoria</p>
@@ -125,8 +125,8 @@ export function Reports() {
             </div>
           </div>
 
-          <div className="lg:col-span-4 bg-white p-8 rounded-[2rem] border border-slate-200 shadow-sm flex flex-col h-[450px]">
-            <div className="flex justify-between items-center mb-8">
+          <div className="lg:col-span-4 bg-white p-5 sm:p-6 lg:p-8 rounded-[2rem] border border-slate-200 shadow-sm flex flex-col h-[420px] sm:h-[450px]">
+            <div className="flex justify-between items-center mb-6 sm:mb-8">
                <div>
                   <h3 className="font-black text-lg text-slate-900 tracking-tight">Eficácia Geral</h3>
                   <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-1">Pesquisa de Satisfação Discente</p>
@@ -176,7 +176,7 @@ export function Reports() {
 
         {/* Ranking Table */}
         <section className="bg-white rounded-[2rem] border border-slate-200 shadow-sm overflow-hidden mb-12">
-          <div className="p-8 border-b border-slate-100 flex justify-between items-center">
+          <div className="p-5 sm:p-6 lg:p-8 border-b border-slate-100 flex flex-col sm:flex-row justify-between sm:items-center gap-4">
             <div>
               <h3 className="font-black text-xl text-slate-900 tracking-tight leading-none">Índice de Inclusão Acadêmica</h3>
               <p className="text-[10px] font-bold text-slate-400 capitalize tracking-widest mt-2 px-1">Ranking de Conformidade por Unidade Acadêmica</p>
@@ -187,7 +187,7 @@ export function Reports() {
             </button>
           </div>
           <div className="overflow-x-auto">
-            <table className="w-full text-left">
+            <table className="w-full min-w-[760px] text-left">
               <thead>
                 <tr className="bg-slate-50/50 text-[10px] font-black text-slate-400 uppercase tracking-widest border-b border-slate-100">
                   <th className="px-8 py-5">Unidade Acadêmica / Curso</th>
@@ -229,11 +229,11 @@ export function Reports() {
           </div>
         </section>
 
-        <div className="flex justify-end gap-4 pb-12">
-          <button className="px-8 py-4 bg-white border-2 border-slate-100 text-slate-500 font-black text-[10px] uppercase tracking-widest rounded-2xl hover:border-primary/20 hover:bg-slate-50 transition-all shadow-sm">
+        <div className="flex flex-col sm:flex-row justify-end gap-4 pb-12">
+          <button className="px-6 sm:px-8 py-4 bg-white border-2 border-slate-100 text-slate-500 font-black text-[10px] uppercase tracking-widest rounded-2xl hover:border-primary/20 hover:bg-slate-50 transition-all shadow-sm">
             Configurar Alertas
           </button>
-          <button className="px-8 py-4 bg-primary text-white font-black text-[10px] uppercase tracking-widest rounded-2xl shadow-xl shadow-primary/20 hover:bg-primary-container active:scale-95 transition-all flex items-center gap-3">
+          <button className="px-6 sm:px-8 py-4 bg-primary text-white font-black text-[10px] uppercase tracking-widest rounded-2xl shadow-xl shadow-primary/20 hover:bg-primary-container active:scale-95 transition-all flex items-center justify-center gap-3">
              <Layers className="size-4" />
             Compartilhar Resultados
           </button>

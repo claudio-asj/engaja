@@ -42,15 +42,15 @@ export function Dashboard() {
   return (
     <>
       <Navbar title="Gestão de Inclusão Acadêmica" />
-      <main className="p-8 space-y-10 animate-in fade-in duration-500 overflow-y-auto flex-1">
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
+      <main className="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8 space-y-6 sm:space-y-8 lg:space-y-10 animate-in fade-in duration-500">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 sm:gap-6">
           <div>
-            <h1 className="text-4xl font-black text-slate-900 tracking-tight leading-none">Painel de Controle</h1>
+            <h1 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight leading-none">Painel de Controle</h1>
             <p className="text-slate-500 mt-2 text-sm font-medium">Bem-vindo(a) ao seu centro de gestão e acessibilidade acadêmica.</p>
           </div>
           <button 
             onClick={() => setIsModalOpen(true)}
-            className="flex items-center gap-2 bg-primary text-white px-8 py-4 rounded-2xl font-black text-sm shadow-xl shadow-primary/20 hover:bg-primary-container active:scale-95 transition-all"
+            className="flex w-full sm:w-auto items-center justify-center gap-2 bg-primary text-white px-6 sm:px-8 py-4 rounded-2xl font-black text-sm shadow-xl shadow-primary/20 hover:bg-primary-container active:scale-95 transition-all"
           >
             <Plus className="size-5" />
             Novo Registro
@@ -58,7 +58,7 @@ export function Dashboard() {
         </div>
 
         {/* Quick Stats Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
           <StatCard 
             label="Inscritos Ativos" 
             value={mockData.stats.activeStudents.toLocaleString()} 
@@ -94,15 +94,15 @@ export function Dashboard() {
           />
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6 lg:gap-8">
           {/* Main Chart Section */}
-          <div className="lg:col-span-8 bg-white p-8 rounded-[2rem] border-2 border-slate-100 shadow-sm flex flex-col min-h-[450px] relative overflow-hidden group">
-             <div className="flex justify-between items-center mb-10 relative z-10">
+          <div className="lg:col-span-8 bg-white p-5 sm:p-6 lg:p-8 rounded-[2rem] border-2 border-slate-100 shadow-sm flex flex-col min-h-[320px] sm:min-h-[420px] lg:min-h-[450px] relative overflow-hidden group">
+             <div className="flex flex-col gap-4 sm:flex-row sm:justify-between sm:items-center mb-6 sm:mb-8 lg:mb-10 relative z-10">
               <div>
-                <h3 className="font-black text-xl text-slate-900 tracking-tight leading-none">Evolução Sistêmica</h3>
+                <h3 className="font-black text-lg sm:text-xl text-slate-900 tracking-tight leading-none">Evolução Sistêmica</h3>
                 <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mt-2 px-1">Performance Acadêmica vs Bem-estar</p>
               </div>
-              <div className="flex gap-6">
+              <div className="flex flex-wrap gap-4 sm:gap-6">
                 <div className="flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full bg-primary shadow-sm"></span>
                   <span className="text-[10px] font-black text-slate-500 uppercase tracking-widest">CR Médio</span>
@@ -166,8 +166,8 @@ export function Dashboard() {
           </div>
 
           {/* Quick Action Side Card */}
-          <div className="lg:col-span-4 bg-white p-8 rounded-[2rem] border-2 border-slate-100 shadow-sm">
-            <div className="flex items-center gap-4 mb-8">
+          <div className="lg:col-span-4 bg-white p-5 sm:p-6 lg:p-8 rounded-[2rem] border-2 border-slate-100 shadow-sm">
+            <div className="flex items-center gap-4 mb-6 sm:mb-8">
               <div className="p-3 bg-blue-50 text-primary rounded-2xl border border-blue-100">
                 <FileEdit className="size-6" />
               </div>
@@ -177,7 +177,7 @@ export function Dashboard() {
               </div>
             </div>
             
-            <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
+            <form className="space-y-5 sm:space-y-6" onSubmit={(e) => e.preventDefault()}>
               <div className="space-y-2">
                 <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest pl-1">Identificar Estudante</label>
                 <div className="relative group">
@@ -205,7 +205,7 @@ export function Dashboard() {
                 <textarea rows={4} placeholder="Notas sobre a evolução do aluno..." theme-variant="modern" className="w-full p-4 bg-slate-50 border-2 border-transparent focus:bg-white focus:border-primary/20 rounded-2xl text-sm font-medium text-slate-700 outline-none resize-none transition-all"></textarea>
               </div>
 
-              <button className="w-full bg-slate-900 text-white py-5 rounded-[1.25rem] font-black text-sm shadow-xl shadow-slate-200 hover:bg-primary active:scale-[0.98] transition-all">
+              <button className="w-full bg-slate-900 text-white py-4 sm:py-5 rounded-[1.25rem] font-black text-sm shadow-xl shadow-slate-200 hover:bg-primary active:scale-[0.98] transition-all">
                 Finalizar Registro
               </button>
             </form>
@@ -214,7 +214,7 @@ export function Dashboard() {
 
         {/* List Section */}
         <div className="bg-white rounded-[2rem] border-2 border-slate-100 shadow-sm overflow-hidden flex flex-col mb-12">
-          <div className="px-8 py-6 border-b border-slate-50 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+          <div className="px-5 sm:px-6 lg:px-8 py-5 sm:py-6 border-b border-slate-50 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 sm:gap-6">
             <div className="flex items-center gap-4">
               <div className="size-12 bg-slate-100 rounded-2xl flex items-center justify-center text-primary">
                 <Users className="size-6" />
@@ -224,7 +224,7 @@ export function Dashboard() {
                 <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mt-2 px-1">Prioridades de Acompanhamento Semestral</p>
               </div>
             </div>
-            <div className="flex gap-3 w-full md:w-auto">
+            <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
               <button className="flex-1 md:flex-none flex items-center justify-center gap-2 bg-white border-2 border-slate-100 px-5 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest text-slate-500 hover:border-primary/20 transition-all">
                 <Filter className="size-4" />
                 Filtrar
@@ -237,7 +237,7 @@ export function Dashboard() {
           </div>
 
           <div className="overflow-x-auto">
-            <table className="w-full text-left">
+            <table className="w-full min-w-[760px] text-left">
               <thead className="bg-slate-50/50 border-b border-slate-100">
                 <tr className="text-[10px] font-black text-slate-400 uppercase tracking-[0.1em]">
                   <th className="px-8 py-5">Identificação Discente</th>

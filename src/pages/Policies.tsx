@@ -33,7 +33,7 @@ export function Policies() {
   return (
     <>
       <Navbar title="Políticas e Iniciativas" />
-      <main className="p-8 space-y-8 animate-in slide-in-from-bottom-4 duration-500 overflow-y-auto flex-1">
+      <main className="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8 space-y-6 sm:space-y-8 animate-in slide-in-from-bottom-4 duration-500">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div>
             <h1 className="text-3xl font-black text-slate-900 tracking-tight leading-none">Estratégias de Inclusão</h1>
@@ -41,7 +41,7 @@ export function Policies() {
           </div>
           <button 
             onClick={() => setIsModalOpen(true)}
-            className="flex items-center gap-2 bg-primary text-white px-6 py-3 rounded-2xl font-bold shadow-lg shadow-primary/20 hover:bg-primary-container active:scale-95 transition-all"
+            className="flex w-full sm:w-auto items-center justify-center gap-2 bg-primary text-white px-6 py-3 rounded-2xl font-bold shadow-lg shadow-primary/20 hover:bg-primary-container active:scale-95 transition-all"
           >
             <PlusCircle className="size-5" />
             Criar Nova Política
@@ -65,7 +65,7 @@ export function Policies() {
           ))}
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
           {mockData.policies.map((policy) => (
             <PolicyCard 
               key={policy.id}
@@ -78,18 +78,18 @@ export function Policies() {
             />
           ))}
           
-          <div className="lg:col-span-2 bg-slate-900 p-8 rounded-[2rem] shadow-2xl relative overflow-hidden group">
+          <div className="lg:col-span-2 bg-slate-900 p-5 sm:p-6 lg:p-8 rounded-[2rem] shadow-2xl relative overflow-hidden group">
             <div className="relative z-10 flex flex-col h-full">
               <div className="flex items-center gap-2 text-primary mb-6">
                 <Star className="size-5 fill-current" />
                 <span className="text-[10px] uppercase font-black tracking-[0.2em]">Destaque do Semestre</span>
               </div>
-              <h3 className="text-3xl font-black text-white mb-4 tracking-tight leading-tight">Programa de <br/> Monitoria Inclusiva</h3>
+              <h3 className="text-2xl sm:text-3xl font-black text-white mb-4 tracking-tight leading-tight">Programa de <br/> Monitoria Inclusiva</h3>
               <p className="text-slate-400 text-sm leading-relaxed max-w-lg mb-8 font-medium">
                 Estudantes veteranos atuando como mentores e facilitadores para ingressantes com deficiência, promovendo integração social e acadêmica sólida.
               </p>
               
-              <div className="mt-auto flex flex-col sm:flex-row items-center gap-8">
+              <div className="mt-auto flex flex-col sm:flex-row items-start sm:items-center gap-6 sm:gap-8">
                 <div className="flex items-center gap-4">
                   <div className="flex -space-x-3">
                     {[1, 2, 3, 4].map(i => (
@@ -115,8 +115,8 @@ export function Policies() {
           </div>
         </div>
 
-        <section className="bg-white border border-slate-200 rounded-[2rem] p-8 shadow-sm">
-          <div className="flex items-center justify-between mb-8">
+        <section className="bg-white border border-slate-200 rounded-[2rem] p-5 sm:p-6 lg:p-8 shadow-sm">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
             <div className="flex items-center gap-4">
               <div className="size-12 bg-slate-100 rounded-2xl flex items-center justify-center text-primary">
                 <FolderOpen className="size-6" />
@@ -195,7 +195,7 @@ function PolicyCard({ title, desc, icon: Icon, count, status, variant = 'default
   const isWarning = variant === 'warning';
   
   return (
-    <div className="bg-white border-2 border-slate-100 p-8 rounded-[2rem] shadow-sm hover:shadow-xl hover:border-transparent transition-all group flex flex-col h-full relative overflow-hidden">
+    <div className="bg-white border-2 border-slate-100 p-5 sm:p-6 lg:p-8 rounded-[2rem] shadow-sm hover:shadow-xl hover:border-transparent transition-all group flex flex-col h-full relative overflow-hidden">
       <div className="flex justify-between items-start mb-8 relative z-10">
         <div className={cn(
           "size-14 rounded-2xl flex items-center justify-center transition-all duration-500 group-hover:scale-110 group-hover:rotate-6 shadow-sm",

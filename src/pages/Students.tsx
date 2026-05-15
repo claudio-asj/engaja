@@ -32,7 +32,7 @@ export function Students() {
   return (
     <>
       <Navbar title="Estudantes Assistidos" />
-      <main className="p-8 space-y-8 animate-in fade-in duration-500 overflow-y-auto flex-1">
+      <main className="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8 space-y-6 sm:space-y-8 animate-in fade-in duration-500">
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
           <div>
             <h1 className="text-3xl font-black text-slate-900 tracking-tight leading-none">Gerenciamento de Alunos</h1>
@@ -40,7 +40,7 @@ export function Students() {
           </div>
           <button 
             onClick={() => setIsModalOpen(true)}
-            className="flex items-center gap-2 bg-primary text-white px-6 py-3 rounded-2xl font-bold shadow-lg shadow-primary/20 hover:bg-primary-container active:scale-95 transition-all"
+            className="flex w-full sm:w-auto items-center justify-center gap-2 bg-primary text-white px-6 py-3 rounded-2xl font-bold shadow-lg shadow-primary/20 hover:bg-primary-container active:scale-95 transition-all"
           >
             <UserPlus className="size-5" />
             Cadastrar Novo Aluno
@@ -48,8 +48,8 @@ export function Students() {
         </div>
 
         {/* Filters Bento Box */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
-          <div className="md:col-span-5 bg-white border-2 border-slate-100 p-8 rounded-[2rem] shadow-sm space-y-5 hover:border-primary/10 transition-all group">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-4 sm:gap-6 lg:gap-8">
+          <div className="md:col-span-5 bg-white border-2 border-slate-100 p-5 sm:p-6 lg:p-8 rounded-[2rem] shadow-sm space-y-5 hover:border-primary/10 transition-all group">
             <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] pl-1">Pesquisa Global</label>
             <div className="relative group/input">
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 size-5 text-slate-300 group-focus-within/input:text-primary transition-all" />
@@ -63,7 +63,7 @@ export function Students() {
             </div>
           </div>
           
-          <div className="md:col-span-12 lg:col-span-7 grid grid-cols-1 sm:grid-cols-3 gap-8">
+          <div className="md:col-span-12 lg:col-span-7 grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
             <FilterSelect label="Acessibilidade" options={["Todas as Demandas", "Visual", "Auditiva", "Motora", "TEA"]} />
             <FilterSelect label="Status" options={["Todos Status", "Ativo", "Formante", "Suspenso"]} />
             <FilterSelect label="Unidade" options={["Todos Campus", "Rio de Janeiro", "São Paulo", "Brasília"]} />
@@ -73,7 +73,7 @@ export function Students() {
         {/* Table Container */}
         <div className="bg-white border-2 border-slate-100 rounded-[2.5rem] shadow-sm overflow-hidden flex flex-col mb-12">
           <div className="overflow-x-auto">
-            <table className="w-full text-left">
+            <table className="w-full min-w-[980px] text-left">
               <thead>
                 <tr className="bg-slate-50/50 border-b border-slate-100">
                   <th className="px-8 py-6 text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">Identificação Discente</th>
@@ -115,7 +115,7 @@ export function Students() {
                       <StatusBadge status={student.status} />
                     </td>
                     <td className="px-8 py-6 text-right">
-                      <div className="flex justify-end gap-3 translate-x-4 opacity-0 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
+                      <div className="flex justify-end gap-3 opacity-100 md:translate-x-4 md:opacity-0 md:group-hover:opacity-100 md:group-hover:translate-x-0 transition-all duration-300">
                         <ActionButton icon={Eye} label="Ver Detalhes" />
                         <ActionButton icon={Edit2} label="Editar Aluno" />
                       </div>
@@ -126,7 +126,7 @@ export function Students() {
             </table>
           </div>
           
-          <div className="px-8 py-6 flex flex-col sm:flex-row items-center justify-between bg-slate-50/50 gap-6 border-t border-slate-100">
+          <div className="px-5 sm:px-6 lg:px-8 py-5 sm:py-6 flex flex-col sm:flex-row items-center justify-between bg-slate-50/50 gap-4 sm:gap-6 border-t border-slate-100">
             <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">
                Exibindo <span className="text-slate-900">{filteredStudents.length}</span> de <span className="text-slate-900">{mockData.stats.pcdTotal}</span> estudantes
             </span>
@@ -144,7 +144,7 @@ export function Students() {
         </div>
 
         {/* Footer Stats Summary */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 mb-12">
           <FooterStat color="bg-slate-950" icon={TrendingUp} value={mockData.stats.activeStudents} label="Inscritos Ativos" trend="+12%" />
           <FooterStat color="bg-white" icon={CalendarDays} value="24" label="Entrevistas efetuadas" darkText />
           <FooterStat color="bg-white" icon={AlertTriangle} value="15" label="Plano de Metas" darkText iconColor="text-red-500" />
@@ -216,7 +216,7 @@ export function Students() {
 
 function FilterSelect({ label, options }: { label: string, options: string[] }) {
   return (
-    <div className="bg-white border-2 border-slate-100 p-8 rounded-[2rem] shadow-sm space-y-4 hover:border-primary/10 transition-all flex flex-col justify-center">
+    <div className="bg-white border-2 border-slate-100 p-5 sm:p-6 lg:p-8 rounded-[2rem] shadow-sm space-y-4 hover:border-primary/10 transition-all flex flex-col justify-center">
       <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] pl-1 leading-none">{label}</label>
       <select className="w-full bg-slate-50 border-2 border-transparent focus:bg-white focus:border-primary/20 rounded-2xl py-4 px-5 text-sm outline-none cursor-pointer font-black transition-all appearance-none text-slate-900 mt-2">
         {options.map(opt => <option key={opt}>{opt}</option>)}
@@ -263,7 +263,7 @@ function PaginationButton({ icon: Icon, disabled = false }: any) {
 
 function FooterStat({ color, icon: Icon, value, label, trend, darkText = false, iconColor }: any) {
   return (
-    <div className={cn("p-8 rounded-[2.5rem] shadow-sm border-2 border-slate-100 flex flex-col justify-between h-44 group hover:shadow-2xl transition-all relative overflow-hidden", color)}>
+    <div className={cn("p-5 sm:p-6 lg:p-8 rounded-[2.5rem] shadow-sm border-2 border-slate-100 flex flex-col justify-between min-h-40 sm:h-44 group hover:shadow-2xl transition-all relative overflow-hidden", color)}>
       <div className="flex justify-between items-start relative z-10">
         <div className={cn("size-12 rounded-2xl flex items-center justify-center shadow-sm", darkText ? "bg-slate-50 border border-slate-100" : "bg-white/10 backdrop-blur-md")}>
            <Icon className={cn("size-6", iconColor || (darkText ? "text-primary" : "text-white"))} />
